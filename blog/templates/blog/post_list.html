@@ -1,26 +1,12 @@
-<html>
-    <head>
-        <title>コウタのブログ</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">コウタのブログ</a></h1>
-        </div>
-        
-        
-        {% for post in posts %}
-        </div>
-            <p>投稿日: {{ post.published_date}}</p>
-            <h2><a href="">{{ post.title }}</a></h2>
+{% extends 'blog/base.html' %}
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                <p>published: {{ post.published_date }}</p>
+            </div>
+            <h2><a href="{% url 'post_detail' pk=post.pk%}">{{ post.title }}</a></h2>
             <p>{{ post.text|linebreaksbr }}</p>
-        <div>
-        {% endfor %}
-        
-        <div>
-            <p>公開日: 2014/06/14, 12:14</p>
-            <h2><a href="">二回目の投稿</a></h2>
-            <p> こんにちは！ よろしくお願いします！ </p>
         </div>
-    </body>
-</html>
-
+    {% endfor %}
+{% endblock %}
